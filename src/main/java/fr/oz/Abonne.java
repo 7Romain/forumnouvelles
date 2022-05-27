@@ -32,11 +32,19 @@ public class Abonne {
     }
 
     void consulterNouvelle(int i) {
+<<<<<<< HEAD
         forum.consulterNouvelle(i);
     }
 
     void repondreNouvelle(int i) {
         forum.repondreNouvelle(i);
+=======
+        forum.consulterNouvelle(int i);
+    }
+
+    void repondreNouvelle(int i) {
+        forum.repondreNouvelle(int i);
+>>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
     }
 
     public String getPrenom() {

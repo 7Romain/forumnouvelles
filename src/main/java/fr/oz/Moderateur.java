@@ -13,19 +13,28 @@ public class Moderateur {
     }
 
     void supprimerNouvelle(Nouvelle a) {
+<<<<<<< HEAD
         Nouvelle Nouvelle;
+=======
+>>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
         forum.supprimerNouvelle(Nouvelle);
 
     };
 
     void bannirAbonne(Abonne a) {
+<<<<<<< HEAD
         Abonne Abonne;
+=======
+>>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
         forum.bannirAbonne(Abonne a);
 
     };
 
     void ajouterAbonne(Abonne a) {
+<<<<<<< HEAD
         Abonne Abonne;
+=======
+>>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
         forum.ajouterAbonne(Abonne a);
 
     };

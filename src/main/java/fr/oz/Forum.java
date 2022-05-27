@@ -79,10 +79,13 @@ public class Forum implements IAbonneForum, IModerateurForum {
         this.listAbonnes = listAbonnes;
     }
 
+<<<<<<< HEAD
     @Override
     public void ajouterNouvelle() {
         // TODO Auto-generated method stub
 
     }
 
+=======
+>>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
 }
