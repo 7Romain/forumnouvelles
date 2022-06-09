@@ -6,45 +6,41 @@ public class Abonne {
     String prenom;
     String nom;
     int age;
-    IAbonneForum forum;
+    static IAbonneForum forum;
+    int avertissement;
+
+    public int getAvertissement() {
+        return this.avertissement;
+    }
+
+    public void setAvertissement(int avertissement) {
+        this.avertissement = avertissement;
+    }
 
     public Abonne(String prenom, String nom, int age) {
         this.prenom = prenom;
         this.nom = nom;
         this.age = age;
+        IAbonneForum forum;
+        avertissement = 0;
     }
 
     void ajouterNouvelle() {
-        String sujet = JOptionPane.showInputDialog(
-                null,
-                "Entrez le sujet de votre Nouvelle.",
-                "Ajouter une Nouvelle.",
-                JOptionPane.QUESTION_MESSAGE);
+        forum.ajouterNouvelle();
 
-        String texte = JOptionPane.showInputDialog(
-                null,
-                "Entrez le texte de votre Nouvelle.",
-                "Ajouter une Nouvelle.",
-                JOptionPane.QUESTION_MESSAGE);
+    }
 
-        Nouvelle nouvelle = new Nouvelle(sujet, texte);
+    public void deposerNouvelle(Nouvelle n) {
+        forum.deposerNouvelle(n);
 
     }
 
     void consulterNouvelle(int i) {
-<<<<<<< HEAD
         forum.consulterNouvelle(i);
     }
 
-    void repondreNouvelle(int i) {
-        forum.repondreNouvelle(i);
-=======
-        forum.consulterNouvelle(int i);
-    }
-
-    void repondreNouvelle(int i) {
-        forum.repondreNouvelle(int i);
->>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
+    void repondreNouvelle(Nouvelle nouvelle) {
+        forum.repondreNouvelle(nouvelle);
     }
 
     public String getPrenom() {
@@ -75,8 +71,27 @@ public class Abonne {
         return forum;
     }
 
-    public void setForum(IAbonneForum forum) {
-        this.forum = forum;
+    public static void setForum(IAbonneForum fofo) {
+        forum = fofo;
+    }
+
+    public void creerNouvelle() {
+        String titreNouvelle = JOptionPane.showInputDialog(null, "Titre ?", "Nouvelle", JOptionPane.QUESTION_MESSAGE);
+        String messageNouvelle = JOptionPane.showInputDialog(null, "Texte ?", "Nouvelle", JOptionPane.QUESTION_MESSAGE);
+        String titrePropre = titreNouvelle.replaceAll(String.valueOf((char) 0160), " ").trim();
+        String messsagePropre = messageNouvelle.replaceAll(String.valueOf((char) 0160), " ").trim();
+
+        Nouvelle nouvelle = new Nouvelle(titrePropre, messsagePropre);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Abonne [age=" + age + ", nom=" + nom + ", prenom=" + prenom + "]";
+    }
+
+    public String toString(int a) {
+        return String.format("%s %s %s ans.", nom, prenom, age);
     }
 
 }

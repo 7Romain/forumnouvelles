@@ -1,58 +1,119 @@
 package fr.oz;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+
+import javax.swing.JOptionPane;
 
 public class Forum implements IAbonneForum, IModerateurForum {
-    Date dateCreation;
+    // Date dateCreation;
+    LocalDateTime dateCreation;
     String nom;
-    ArrayList listeNouvelles = new ArrayList();
-    ArrayList listAbonnes = new ArrayList();
+    ArrayList<Nouvelle> listeNouvelles;
+    ArrayList<Abonne> listeAbonnes;
 
     public Forum() {
     }
 
     public Forum(String nom) {
+
         this.nom = nom;
-        Date dateCreation = new Date();
-        ArrayList nouvelles = new ArrayList();
-        ArrayList abonnes = new ArrayList();
+        dateCreation = LocalDateTime.now();
+        listeNouvelles = new ArrayList();
+        listeAbonnes = new ArrayList();
 
     }
 
-    public boolean ajouterNouvelle(Nouvelle n) {
-        return true;
-    }
+    public boolean deposerNouvelle(Nouvelle n) {
+        if (listeNouvelles.add(n)) {
+            return true;
+        }
+        return false;
+        // listeNouvelles.add(n)? return true : return false;
 
-    public void consulterNouvelle(int i) {
-    }
-
-    public void repondreNouvelle(int i) {
     }
 
     public boolean supprimerNouvelle(Nouvelle n) {
-        return true;
+        if (listeNouvelles.remove(n)) {
+            return true;
+        }
+        return false;
+
+    }
+
+    public void consulterNouvelle(int i) {
+        listeNouvelles.get(i);
+    }
+
+    public void repondreNouvelle(Nouvelle nouvelleAContinuer) {
+        String txt;
+
+        deposerNouvelle(new Nouvelle(nouvelleAContinuer.getSujet(),
+                txt = JOptionPane.showInputDialog(null,
+                        "Texte ?",
+                        "Nouvelle",
+                        JOptionPane.QUESTION_MESSAGE)));
+
     }
 
     public void bannirAbonne(Abonne a) {
+        listeAbonnes.remove(a);
     }
 
     public void ajouterAbonne(Abonne a) {
+        listeAbonnes.add(a);
     }
 
-    public int listerAbonne() {
-        return 1;
+    public void listerAbonne() {
+        String totale = "Les abonnés sont : \n\n";
+
+        Iterator<Abonne> chaque = listeAbonnes.iterator();
+
+        while (chaque.hasNext()) {
+
+            String tour = String.format("%s%n", chaque.next().toString(1));
+
+            totale += tour;
+        }
+        JOptionPane.showMessageDialog(null, totale);
+
     }
 
     public void listerNouvelle() {
+        String totale = "Les nouvelles sont : \n\n";
+        for (Nouvelle chaque : listeNouvelles) {
+            String tour = chaque.toString() + "\n";
+            totale += tour;
+
+        }
+        JOptionPane.showMessageDialog(null, totale);
     }
 
-    public Date getDateCreation() {
+    public Nouvelle ajouterNouvelle() {
+        String sujet = JOptionPane.showInputDialog(
+                null,
+                "Entrez le sujet de votre Nouvelle.",
+                "Ajouter une Nouvelle.",
+                JOptionPane.QUESTION_MESSAGE);
+
+        String texte = JOptionPane.showInputDialog(
+                null,
+                "Entrez le texte de votre Nouvelle.",
+                "Ajouter une Nouvelle.",
+                JOptionPane.QUESTION_MESSAGE);
+
+        Nouvelle nouvelle = new Nouvelle(sujet, texte);
+        deposerNouvelle(nouvelle);
+        return nouvelle;
+
+    }
+
+    public LocalDateTime getDateCreation() {
         return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
     }
 
     public String getNom() {
@@ -67,25 +128,16 @@ public class Forum implements IAbonneForum, IModerateurForum {
         return listeNouvelles;
     }
 
-    public void setListeNouvelles(ArrayList listeNouvelles) {
+    public void setListeNouvelles(ArrayList<Nouvelle> listeNouvelles) {
         this.listeNouvelles = listeNouvelles;
     }
 
     public ArrayList getListAbonnes() {
-        return listAbonnes;
+        return listeAbonnes;
     }
 
-    public void setListAbonnes(ArrayList listAbonnes) {
-        this.listAbonnes = listAbonnes;
+    public void setListAbonnes(ArrayList<Abonne> listAbonnes) {
+        this.listeAbonnes = listAbonnes;
     }
 
-<<<<<<< HEAD
-    @Override
-    public void ajouterNouvelle() {
-        // TODO Auto-generated method stub
-
-    }
-
-=======
->>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
 }

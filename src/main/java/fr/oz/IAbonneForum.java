@@ -2,10 +2,12 @@ package fr.oz;
 
 public interface IAbonneForum {
 
-    void ajouterNouvelle();
+    Nouvelle ajouterNouvelle();
 
     void consulterNouvelle(int i);
 
-    void repondreNouvelle(int i);
+    void repondreNouvelle(Nouvelle nouvelle);
+
+    boolean deposerNouvelle(Nouvelle n);
 
 }

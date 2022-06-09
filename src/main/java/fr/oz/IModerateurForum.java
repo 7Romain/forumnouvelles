@@ -7,7 +7,7 @@ public interface IModerateurForum {
 
     void ajouterAbonne(Abonne a);
 
-    int listerAbonne();
+    void listerAbonne();
 
     void listerNouvelle();
 }

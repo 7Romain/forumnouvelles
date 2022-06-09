@@ -4,47 +4,44 @@ public class Moderateur {
     String prenom;
     String nom;
     int age;
-    IModerateurForum forum;
+    static IModerateurForum forum;
 
     public Moderateur(String prenom, String nom, int age) {
         this.prenom = prenom;
         this.nom = nom;
         this.age = age;
+        IModerateurForum forum;
     }
 
     void supprimerNouvelle(Nouvelle a) {
-<<<<<<< HEAD
-        Nouvelle Nouvelle;
-=======
->>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
-        forum.supprimerNouvelle(Nouvelle);
+        forum.supprimerNouvelle(a);
 
-    };
+    }
 
     void bannirAbonne(Abonne a) {
-<<<<<<< HEAD
-        Abonne Abonne;
-=======
->>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
-        forum.bannirAbonne(Abonne a);
+        forum.bannirAbonne(a);
 
-    };
+    }
+
+    void avertir(Abonne a) {
+        int n = a.getAvertissement() + 1;
+        a.setAvertissement(n);
+        if (a.getAvertissement() > 3) {
+            forum.bannirAbonne(a);
+        }
+    }
 
     void ajouterAbonne(Abonne a) {
-<<<<<<< HEAD
-        Abonne Abonne;
-=======
->>>>>>> 19d65a3305474d7bc1359a66c41f17b39a69629e
-        forum.ajouterAbonne(Abonne a);
+        forum.ajouterAbonne(a);
 
-    };
+    }
 
     void listerAbonne() {
         forum.listerAbonne();
-    };
+    }
 
     void listerNouvelle() {
-        forum.listerAbonne();
+        forum.listerNouvelle();
     }
 
     public String getPrenom() {
@@ -75,8 +72,8 @@ public class Moderateur {
         return forum;
     }
 
-    public void setForum(IModerateurForum forum) {
-        this.forum = forum;
-    };
+    public static void setForum(IModerateurForum fofo) {
+        forum = fofo;
+    }
 
 }
